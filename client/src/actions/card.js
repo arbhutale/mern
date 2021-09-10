@@ -1,6 +1,5 @@
 import api from '../utils/api';
 import { setAlert } from './alert';
-import { push } from "connected-react-router";
 import {
   GET_CARDS,
   POST_ERROR,
