@@ -28,12 +28,12 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
             auth.loading === false &&
             auth.user._id === profile.user._id && (
               <Link to="/edit-profile" className="btn btn-dark">
-                Edit Profile
+                Edit Profile {auth.user.username}
               </Link>
             )}
           <div className="profile-grid my-1">
             <ProfileTop profile={profile} />
-            <ProfileAbout profile={profile} />
+            <ProfileAbout auth={auth.user} profile={profile}  />
             <div className="profile-exp bg-white p-2">
               <h2 className="text-primary">Experience</h2>
               {profile.experience.length > 0 ? (
@@ -46,7 +46,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                   ))}
                 </Fragment>
               ) : (
-                <h4>No experience credentials</h4>
+                <h4>No experience credentials {profile.githubusername}</h4>
               )}
             </div>
 
@@ -84,7 +84,7 @@ Profile.propTypes = {
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
-  auth: state.auth
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getProfileById })(Profile);

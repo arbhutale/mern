@@ -4,14 +4,20 @@ import PropTypes from 'prop-types';
 const ProfileAbout = ({
   profile: {
     bio,
-    skills,
-    user: { name }
+    skills
+  },
+  auth: {
+    username
   }
 }) => (
   <div className='profile-about bg-light p-2'>
     {bio && (
       <Fragment>
-        <h2 className='text-primary'>{name.trim().split(' ')[0]}s Bio</h2>
+        {username ? (
+         <h2 className='text-primary'>{username.trim().split(' ')[0]}'s Bio</h2>
+      ) : (
+        <h2 className='text-primary'>User's Bio</h2>
+      )}
         <p>{bio}</p>
         <div className='line' />
       </Fragment>

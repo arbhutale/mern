@@ -10,7 +10,7 @@ import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
-  auth: { user },
+  auth: { user }, 
   profile: { profile }
 }) => {
   useEffect(() => {
