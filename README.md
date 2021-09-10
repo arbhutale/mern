@@ -1,4 +1,4 @@
-# DevConnector 2.0
+# DevCommuno
 
 > Social network for developers
 
@@ -339,17 +339,3 @@ Once merged you can push to heroku as above and your site will rebuild and be up
 
 ---
 
-## App Info
-
-### Author
-
-Brad Traversy
-[Traversy Media](http://www.traversymedia.com)
-
-### Version
-
-2.0.0
-
-### License
-
-This project is licensed under the MIT License
