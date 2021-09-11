@@ -38,7 +38,6 @@ const ModalPM  = forwardRef((props, ref) => {
   }
   return (
     <div>
-      {pm._id}
       <Button color="danger" onClick={toggle}>Test</Button>
       <Modal isOpen={modal} toggle={toggle} className="test">
         <ModalHeader toggle={toggle}>{title}</ModalHeader>
