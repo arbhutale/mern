@@ -50,13 +50,13 @@ const CardForm = ({ addCard, auth: { user }, card, getCard, updateCard }) => {
                 </div>
                 <div className="col-md-4">
                     <div className="my-1">
-                        <input type='text' placeholder="Enter Key to  Encrpt or Decrypt " className='form-control' value={key}
+                        <input type='password' placeholder="Enter Key to  Encrpt or Decrypt " className='form-control' value={key}
                             onChange={e => { setKey(e.target.value) }} />
                     </div>
                 </div>
                 <div className="col-md-2">
                     <div className="my-1">
-                        <input disabled={lock} type='button' className='btn btn-primary' value="Lock Key"
+                        <input req disabled={lock} type='button' className='btn btn-primary' value="Lock Key"
                             onClick={e => { if (key.length > 3 && params.id) { setForm({ ...form, cvv: card_deatails.cvv, card_pin: card_deatails.card_pin });   setFlag(true); }else{
                                 if (key.length > 3){ setFlag(true); {setLock(true)} }
                             } }} />
@@ -90,46 +90,46 @@ const CardForm = ({ addCard, auth: { user }, card, getCard, updateCard }) => {
                     // setText('');
                 }}
             >
-                <div className="my-1">
+                <div required className="my-1">
                     <label>Card Name</label>
-                    <input disabled={!lock} type='text' className='form-control' value={form.nickname}
+                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.nickname}
                         onChange={e => setForm({ ...form, nickname: e.target.value })} />
                 </div>
-                <div className="my-1">
+                <div  className="my-1">
                     <label>Card Bank</label>
-                    <input disabled={!lock} type='text' className='form-control' value={form.card_bank}
+                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.card_bank}
                         onChange={e => setForm({ ...form, card_bank: e.target.value })} />
                 </div>
-                <div className="my-1">
+                <div  className="my-1">
                     <label>Card Holder Name</label>
-                    <input disabled={!lock} type='text' className='form-control' value={form.name}
+                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.name}
                         onChange={e => setForm({ ...form, name: e.target.value })} />
                 </div>
-                <div className="my-1">
+                <div  className="my-1">
                     <label>Card Number</label>
-                    <input disabled={!lock} disabled={!lock} type='text' className='form-control' value={form.card_no}
+                    <input required pattern=".{4,}" disabled={!lock} disabled={!lock} type='text' className='form-control' value={form.card_no}
                         onChange={e => setForm({ ...form, card_no: e.target.value })} />
                 </div>
                 <div className="my-1">
                     <label>Card Expiry</label>
-                    <input disabled={!lock} disabled={!lock} type='text' className='form-control' value={form.expiry}
+                    <input  required pattern=".{4,}" disabled={!lock} disabled={!lock} type='text' className='form-control' value={form.expiry}
                         onChange={e => setForm({ ...form, expiry: e.target.value })} />
                 </div>
-                <div className="my-1">
+                <div  className="my-1">
                     <label>Card CVV</label>
-                    <input disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.cvv, key).toString(CryptoJS.enc.Utf8) }
+                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.cvv, key).toString(CryptoJS.enc.Utf8) }
                         onChange={e => setForm({ ...form, cvv: CryptoJS.AES.encrypt(e.target.value, key).toString()})} />
                     <small>This is will be stored in encrypted way</small>
                 </div>
-                <div className="my-1">
+                <div  className="my-1">
                     <label>Card Pin</label>
-                    <input disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.card_pin, key).toString(CryptoJS.enc.Utf8) }
+                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.card_pin, key).toString(CryptoJS.enc.Utf8) }
                         onChange={e => setForm({ ...form, card_pin:CryptoJS.AES.encrypt(e.target.value, key).toString()})} />
                     <small>This is will be stored in encrypted way</small>
                 </div>
                 <div className="my-1">
                     <label >Card Type:</label>
-                    <select disabled={!lock} name="cars" id="cars" className='form-control' value={form.card_type}
+                    <select required disabled={!lock} name="cars" id="cars" className='form-control' value={form.card_type}
                         onChange={e => setForm({ ...form, card_type: e.target.value })} >
                         <option value="">Select Card Type</option>
                         <option value="Credit">Credit</option>
