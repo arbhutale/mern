@@ -14,7 +14,7 @@ const Card = ({ getCards, card: { cards },deleteCard }) => {
                 Add Card
             </Link>
             {/* <CardForm/> */}
-            <div className="posts">
+            <div className="posts table-responsive">
                 <table className="table table-hover">
                     <thead>
                         <tr>
@@ -44,7 +44,7 @@ const Card = ({ getCards, card: { cards },deleteCard }) => {
                                 {/* <td> {CryptoJS.AES.decrypt(card.cvv, 'secret key 123').toString(CryptoJS.enc.Utf8)}</td>
                                 <td>{CryptoJS.AES.decrypt(card.cvv, 'secret key 123').toString(CryptoJS.enc.Utf8)}</td> */}
                                 <td>{card.card_type}</td>
-                                <td><Link to= {"/card/view/" + card._id}><i className="fas fa-eye pointer blue"> </i></Link> || <Link to= {"/card/update/" + card._id}> <i className="fas fa-edit pointer"> </i></Link> || <i onClick={e => {
+                                <td className="width150"><Link to= {"/card/view/" + card._id}><i className="fas fa-eye pointer blue"> </i></Link> || <Link to= {"/card/update/" + card._id}> <i className="fas fa-edit pointer"> </i></Link> || <i onClick={e => {
                     e.preventDefault();
                     deleteCard( card._id );
                     // setText('');

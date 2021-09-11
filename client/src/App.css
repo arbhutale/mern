@@ -579,7 +579,9 @@ nav {
     width: 100%;
     margin-bottom: 0.2rem;
   }
-
+.width150{
+  min-width: 150px;
+}
   .post {
     grid-template-columns: 1fr;
   }
