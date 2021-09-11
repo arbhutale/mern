@@ -15,6 +15,7 @@ import Card from '../card/card';
 import CardForm from '../card/CardForm';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from './PrivateRoute';
+import Pm from '../pm/pm';
 
 const Routes = () => {
   return (
@@ -36,6 +37,7 @@ const Routes = () => {
         <PrivateRoute exact path="/cards/add" component={CardForm} />
         <PrivateRoute exact path="/card/update/:id" component={CardForm} />
         <PrivateRoute exact path="/card/:view/:id" component={CardForm} />
+        <PrivateRoute exact path="/creds" component={Pm} />
         <Route component={NotFound} />
       </Switch>
     </section>

@@ -29,6 +29,13 @@ export const GET_CARDS = 'GET_CARDS';
 export const DELETE_CARD = 'DELETE_CARD';
 export const GET_CARD = 'GET_CARD';
 export const UPDATE_CARD = 'UPDATE_CARD';
+export const GET_PMS = 'GET_PMS';
+export const ADD_PM = 'ADD_PM';
+export const PM_ERROR = 'PM_ERROR';
+export const DELETE_PM = 'DELETE_PM';
+export const GET_PM = 'GET_PM';
+export const UPDATE_PM = 'UPDATE_PM';
+  
 
 
 

@@ -1,15 +1,15 @@
 import {
-    GET_CARDS,
-    DELETE_CARD,
-    ADD_CARD,
-    CARD_ERROR,
-    GET_CARD,
-    UPDATE_CARD
+  GET_PMS,
+  ADD_PM,
+  PM_ERROR,
+  DELETE_PM,
+  GET_PM,
+  UPDATE_PM
   } from '../actions/types';
   
   const initialState = {
-    cards: [],
-    card: null,
+    pms: [],
+    pm: null,
     loading: true,
     error: {}
   };
@@ -18,36 +18,36 @@ import {
     const { type, payload } = action;
   
     switch (type) {
-      case GET_CARDS:
+      case GET_PMS:
         return {
           ...state,
-          cards: payload,
+          pms: payload,
           loading: false
         };
-      case GET_CARD:
+      case GET_PM:
         return {
           ...state,
-          card: payload,
+          pm: payload,
           loading: false
         };
-      case ADD_CARD:
+      case ADD_PM:
         return {
           ...state,
-          cards: [payload, ...state.cards],
+          pms: [payload, ...state.pms],
           loading: false
         };
-        case UPDATE_CARD:
+        case UPDATE_PM:
         return {
           ...state,
           loading: false
         };
-      case DELETE_CARD:
+      case DELETE_PM:
         return {
           ...state,
-          cards: state.cards.filter((card) => card._id !== payload),
+          pms: state.pms.filter((pm) => pm._id !== payload),
           loading: false
         };
-      case CARD_ERROR:
+      case PM_ERROR:
         return {
           ...state,
           error: payload,

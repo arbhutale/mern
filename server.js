@@ -3,7 +3,8 @@ const connectDB = require('./config/db');
 const path = require('path');
 const cors = require('cors')
 const app = express();
-
+const dotenv = require('dotenv');
+dotenv.config();
 // Connect Database
 connectDB();
 
@@ -16,6 +17,7 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/cards', require('./routes/api/cards'));
+app.use('/api/pms', require('./routes/api/passwordManager'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

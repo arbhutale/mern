@@ -46,6 +46,12 @@ const Navbar1 = ({ auth: { isAuthenticated }, logout }) => {
         </Link>
       </li>
       <li>
+        <Link to="/creds">
+          <i className="fas  fa-key" />{' '}
+          <span className="hide-sm">Creds</span>
+        </Link>
+      </li>
+      <li>
         <a onClick={logout} href="#!">
           <i className="fas fa-sign-out-alt" />{' '}
           <span className="hide-sm">Logout</span>

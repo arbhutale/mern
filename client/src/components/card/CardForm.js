@@ -18,13 +18,13 @@ const CardForm = ({ addCard, auth: { user }, card, getCard, updateCard }) => {
         setTimeout(() => {
             setShow(true)
             setFormData(card_deatails)
-          }, 500)
+        }, 500)
     }, [getCard, show]);
     const [form, setForm] = useState({
         name: "",
         card_no: "",
-        nickname:  "",
-        expiry:  "",
+        nickname: "",
+        expiry: "",
         cvv: "",
         card_type: "",
         card_bank: "",
@@ -32,12 +32,12 @@ const CardForm = ({ addCard, auth: { user }, card, getCard, updateCard }) => {
         createdBy: user.email
     });
     const setFormData = (card_deatails) => {
-        if(params.id){
-            setForm({ ...form, name: card_deatails.name, nickname: card_deatails.nickname, card_no: card_deatails.card_no, expiry: card_deatails.expiry, card_type: card_deatails.card_type,card_bank: card_deatails.card_bank,createdBy: user.email, card_no: card_deatails.card_no});
-        }else{
-            setForm({ ...form, name: "", nickname: "", card_no: "", expiry: "", card_type: "",card_bank: "",createdBy: user.email, card_no: ""});
+        if (params.id) {
+            setForm({ ...form, name: card_deatails.name, nickname: card_deatails.nickname, card_no: card_deatails.card_no, expiry: card_deatails.expiry, card_type: card_deatails.card_type, card_bank: card_deatails.card_bank, createdBy: user.email, card_no: card_deatails.card_no });
+        } else {
+            setForm({ ...form, name: "", nickname: "", card_no: "", expiry: "", card_type: "", card_bank: "", createdBy: user.email, card_no: "" });
         }
-            
+
     }
     if (!show) return null
     return (
@@ -57,21 +57,23 @@ const CardForm = ({ addCard, auth: { user }, card, getCard, updateCard }) => {
                 <div className="col-md-2">
                     <div className="my-1">
                         <input req disabled={lock} type='button' className='btn btn-primary' value="Lock Key"
-                            onClick={e => { if (key.length > 3 && params.id) { setForm({ ...form, cvv: card_deatails.cvv, card_pin: card_deatails.card_pin });   setFlag(true); }else{
-                                if (key.length > 3){ setFlag(true); {setLock(true)} }
-                            } }} />
+                            onClick={e => {
+                                if (key.length > 3 && params.id) { setForm({ ...form, cvv: card_deatails.cvv, card_pin: card_deatails.card_pin }); setFlag(true); } else {
+                                    if (key.length > 3) { setFlag(true); { setLock(true) } }
+                                }
+                            }} />
                     </div>
                 </div>
                 {(params.id)
-                    ?  <div className="col-md-1">
-                    <div className="my-1">
-                        <input hidden={params.view} disabled={!flag}  type='button' className='btn btn-primary' value="Edit"
-                            onClick={e => { if(flag) {setLock(true)} }} />
+                    ? <div className="col-md-1">
+                        <div className="my-1">
+                            <input hidden={params.view} disabled={!flag} type='button' className='btn btn-primary' value="Edit"
+                                onClick={e => { if (flag) { setLock(true) } }} />
+                        </div>
                     </div>
-                </div>
                     : ""
                 }
-               
+
             </div>
 
             <div className='bg-primary p'>
@@ -95,36 +97,36 @@ const CardForm = ({ addCard, auth: { user }, card, getCard, updateCard }) => {
                     <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.nickname}
                         onChange={e => setForm({ ...form, nickname: e.target.value })} />
                 </div>
-                <div  className="my-1">
+                <div className="my-1">
                     <label>Card Bank</label>
                     <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.card_bank}
                         onChange={e => setForm({ ...form, card_bank: e.target.value })} />
                 </div>
-                <div  className="my-1">
+                <div className="my-1">
                     <label>Card Holder Name</label>
                     <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.name}
                         onChange={e => setForm({ ...form, name: e.target.value })} />
                 </div>
-                <div  className="my-1">
+                <div className="my-1">
                     <label>Card Number</label>
                     <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} disabled={!lock} type='text' className='form-control' value={form.card_no}
                         onChange={e => setForm({ ...form, card_no: e.target.value })} />
                 </div>
                 <div className="my-1">
                     <label>Card Expiry</label>
-                    <input  required pattern=".{4,}" disabled={!lock} disabled={!lock} type='text' className='form-control' value={form.expiry}
+                    <input required pattern=".{4,}" disabled={!lock} disabled={!lock} type='text' className='form-control' value={form.expiry}
                         onChange={e => setForm({ ...form, expiry: e.target.value })} />
                 </div>
-                <div  className="my-1">
+                <div className="my-1">
                     <label>Card CVV</label>
-                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.cvv, key).toString(CryptoJS.enc.Utf8) }
-                        onChange={e => setForm({ ...form, cvv: CryptoJS.AES.encrypt(e.target.value, key).toString()})} />
+                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.cvv, key).toString(CryptoJS.enc.Utf8)}
+                        onChange={e => setForm({ ...form, cvv: CryptoJS.AES.encrypt(e.target.value, key).toString() })} />
                     <small>This is will be stored in encrypted way</small>
                 </div>
-                <div  className="my-1">
+                <div className="my-1">
                     <label>Card Pin</label>
-                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.card_pin, key).toString(CryptoJS.enc.Utf8) }
-                        onChange={e => setForm({ ...form, card_pin:CryptoJS.AES.encrypt(e.target.value, key).toString()})} />
+                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.card_pin, key).toString(CryptoJS.enc.Utf8)}
+                        onChange={e => setForm({ ...form, card_pin: CryptoJS.AES.encrypt(e.target.value, key).toString() })} />
                     <small>This is will be stored in encrypted way</small>
                 </div>
                 <div className="my-1">
@@ -136,13 +138,13 @@ const CardForm = ({ addCard, auth: { user }, card, getCard, updateCard }) => {
                         <option value="Debit">Debit</option>
                     </select>
                 </div>
-            
+
                 {(params.id)
-                    ? <input  hidden={params.view} disabled={!lock} onClick={e => {
+                    ? <input hidden={params.view} disabled={!lock} onClick={e => {
                         e.preventDefault();
                         updateCard(form, params.id);
                     }} type='button' className='btn btn-dark my-1' value='Update' />
-                    : <input  hidden={params.view}  disabled={!lock} type='submit' className='btn btn-dark my-1' value='Submit' />
+                    : <input hidden={params.view} disabled={!lock} type='submit' className='btn btn-dark my-1' value='Submit' />
                 }
                 <small>Please Enter Secret Key & lock It</small>
             </form>
