@@ -1,12 +1,32 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
 
-const Navbar = ({ auth: { isAuthenticated }, logout }) => {
+
+const Navbar1 = ({ auth: { isAuthenticated }, logout }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
   const authLinks = (
-    <ul>
+    <ul className="navbar-nav ms-md-auto">
       <li>
         <Link to="/profiles">Developers</Link>
       </li>
@@ -22,7 +42,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       <li>
         <Link to="/cards">
           <i className="fas  fa-credit-card" />{' '}
-          <span className="hide-sm">Card</span>
+          <span className="hide-sm">Cards</span>
         </Link>
       </li>
       <li>
@@ -33,6 +53,8 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
       </li>
     </ul>
   );
+
+
 
   const guestLinks = (
     <ul>
@@ -48,19 +70,45 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
     </ul>
   );
 
+
+  // const guestLinks = (
+  //   <Nav className="mr-auto" navbar>
+  //     <NavItem>
+  //       <NavLink  href="/profiles">Developers</NavLink>
+  //     </NavItem>
+  //     <NavItem>
+  //       <NavLink  href="/register">Register</NavLink>
+  //     </NavItem>
+  //     <NavItem>
+  //       <NavLink  href="/login">Login</NavLink>
+  //     </NavItem>
+  //   </Nav>
+  // );
+
   return (
-    <nav className="navbar bg-dark">
-      <h1>
-        <Link to="/">
-          <i className="fas fa-code" /> Dev Communo
-        </Link>
-      </h1>
-      <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-    </nav>
+    // <nav className="navbar bg-dark">
+    //   <h1>
+    //     <Link to="/">
+    //       <i className="fas fa-code" /> Dev Communo
+    //     </Link>
+    //   </h1>
+    //   <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+    // </nav>
+    <div>
+      <Navbar className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div className="container">
+        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+        </Collapse>
+        </div>
+      </Navbar>
+    </div>
   );
 };
 
-Navbar.propTypes = {
+Navbar1.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -69,4 +117,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar1);

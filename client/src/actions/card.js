@@ -2,15 +2,11 @@ import api from '../utils/api';
 import { setAlert } from './alert';
 import {
   GET_CARDS,
-  POST_ERROR,
-  UPDATE_LIKES,
-  DELETE_POST,
-  ADD_POST,
-  GET_POST,
-  ADD_COMMENT,
-  REMOVE_COMMENT,
   ADD_CARD,
-  CARD_ERROR
+  CARD_ERROR,
+  DELETE_CARD,
+  GET_CARD,
+  UPDATE_CARD
 } from './types';
 
 // Get posts
@@ -31,25 +27,23 @@ export const getCards = () => async dispatch => {
 };
 
 
-// // Delete post
-// export const deletePost = id => async dispatch => {
-//   try {
-      
-//     await api.delete(`/posts/${id}`);
+// Delete Crda
+export const deleteCard = id => async dispatch => {
+  try {
+    await api.delete(`/cards/${id}`);
+    dispatch({
+      type: DELETE_CARD,
+      payload: id
+    });
 
-//     dispatch({
-//       type: DELETE_POST,
-//       payload: id
-//     });
-
-//     dispatch(setAlert('Post Removed', 'success'));
-//   } catch (err) {
-//     dispatch({
-//       type: CARD_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
+    dispatch(setAlert('Card Removed', 'success'));
+  } catch (err) {
+    dispatch({
+      type: CARD_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
 
 // Add card
 export const addCard = formData => async dispatch => {
@@ -73,22 +67,46 @@ export const addCard = formData => async dispatch => {
   
 };
 
-// Get post
-// export const getPost = id => async dispatch => {
-//   try {
-//     const res = await api.get(`/posts/${id}`);
 
-//     dispatch({
-//       type: GET_POST,
-//       payload: res.data
-//     });
-//   } catch (err) {
-//     dispatch({
-//       type: POST_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// };
+
+// Add card
+export const updateCard = (formData, id) => async dispatch => {
+    console.log(formData)
+  try {
+    const res = await api.put(`/cards/${id}`, formData)
+    dispatch({
+      type: UPDATE_CARD,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Card Updated', 'success'));
+    
+  } catch (err) {
+      console.log(err)
+    dispatch({
+      type: CARD_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+  
+};
+
+// Get Card
+export const getCard = id => async dispatch => {
+  try {
+    const res = await api.get(`/cards/${id}`);
+
+    dispatch({
+      type: GET_CARD,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: CARD_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
 
 
 

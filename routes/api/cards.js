@@ -210,7 +210,7 @@ router.get('/:id', auth, (req, res) => {
             if (!cards) {
                 res.json({ success: false, message: 'No Cards found.' }); // Return error of no blogs found
             } else {
-                res.json({ success: true, cards: cards }); // Return success and blogs array
+                res.json( cards ); // Return success and blogs array
             }
         }
     }).sort({ '_id': -1 }); // Sort blogs from newest to oldest

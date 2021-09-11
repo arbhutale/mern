@@ -34,6 +34,8 @@ const Routes = () => {
         <PrivateRoute exact path="/posts/:id" component={Post} />
         <PrivateRoute exact path="/cards" component={Card} />
         <PrivateRoute exact path="/cards/add" component={CardForm} />
+        <PrivateRoute exact path="/card/update/:id" component={CardForm} />
+        <PrivateRoute exact path="/card/:view/:id" component={CardForm} />
         <Route component={NotFound} />
       </Switch>
     </section>

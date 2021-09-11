@@ -1,9 +1,11 @@
 import {
     GET_CARDS,
-    DELETE_POST,
+    DELETE_CARD,
     GET_POST,
     ADD_CARD,
-    CARD_ERROR
+    CARD_ERROR,
+    GET_CARD,
+    UPDATE_CARD
   } from '../actions/types';
   
   const initialState = {
@@ -23,7 +25,7 @@ import {
           cards: payload,
           loading: false
         };
-      case GET_POST:
+      case GET_CARD:
         return {
           ...state,
           card: payload,
@@ -35,10 +37,15 @@ import {
           cards: [payload, ...state.cards],
           loading: false
         };
-      case DELETE_POST:
+        case UPDATE_CARD:
         return {
           ...state,
-          cards: state.posts.filter((post) => post._id !== payload),
+          loading: false
+        };
+      case DELETE_CARD:
+        return {
+          ...state,
+          cards: state.cards.filter((card) => card._id !== payload),
           loading: false
         };
       case CARD_ERROR:
