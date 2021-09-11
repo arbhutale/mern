@@ -92,22 +92,22 @@ const CardForm = ({ addCard, auth: { user }, card, getCard, updateCard }) => {
             >
                 <div required className="my-1">
                     <label>Card Name</label>
-                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.nickname}
+                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.nickname}
                         onChange={e => setForm({ ...form, nickname: e.target.value })} />
                 </div>
                 <div  className="my-1">
                     <label>Card Bank</label>
-                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.card_bank}
+                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.card_bank}
                         onChange={e => setForm({ ...form, card_bank: e.target.value })} />
                 </div>
                 <div  className="my-1">
                     <label>Card Holder Name</label>
-                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.name}
+                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={form.name}
                         onChange={e => setForm({ ...form, name: e.target.value })} />
                 </div>
                 <div  className="my-1">
                     <label>Card Number</label>
-                    <input required pattern=".{4,}" disabled={!lock} disabled={!lock} type='text' className='form-control' value={form.card_no}
+                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} disabled={!lock} type='text' className='form-control' value={form.card_no}
                         onChange={e => setForm({ ...form, card_no: e.target.value })} />
                 </div>
                 <div className="my-1">
@@ -117,13 +117,13 @@ const CardForm = ({ addCard, auth: { user }, card, getCard, updateCard }) => {
                 </div>
                 <div  className="my-1">
                     <label>Card CVV</label>
-                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.cvv, key).toString(CryptoJS.enc.Utf8) }
+                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.cvv, key).toString(CryptoJS.enc.Utf8) }
                         onChange={e => setForm({ ...form, cvv: CryptoJS.AES.encrypt(e.target.value, key).toString()})} />
                     <small>This is will be stored in encrypted way</small>
                 </div>
                 <div  className="my-1">
                     <label>Card Pin</label>
-                    <input required pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.card_pin, key).toString(CryptoJS.enc.Utf8) }
+                    <input required title="Four or more characters" pattern=".{4,}" disabled={!lock} type='text' className='form-control' value={CryptoJS.AES.decrypt(form.card_pin, key).toString(CryptoJS.enc.Utf8) }
                         onChange={e => setForm({ ...form, card_pin:CryptoJS.AES.encrypt(e.target.value, key).toString()})} />
                     <small>This is will be stored in encrypted way</small>
                 </div>
