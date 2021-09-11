@@ -1,5 +1,0 @@
-{
-    "mongoURI": "mongodb://arbhutale:ddXjxyF9mvhpQRLc@cluster0-shard-00-00.xsyd5.mongodb.net:27017,cluster0-shard-00-01.xsyd5.mongodb.net:27017,cluster0-shard-00-02.xsyd5.mongodb.net:27017/testcard?ssl=true&replicaSet=atlas-106no0-shard-0&authSource=admin&retryWrites=true&w=majority",
-    "jwtSecret": "Dipali@123",
-    "githubToken": "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"
-  }
